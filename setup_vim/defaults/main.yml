@@ -1,0 +1,36 @@
+---
+# defaults file for setup_vim
+plugins:
+  - name: vim-surround
+    url: 'https://github.com/tpope/vim-surround.git'
+  - name: vim-fugitive
+    url: 'https://github.com/tpope/vim-fugitive.git'
+  - name: vim-vinegar
+    url: 'https://github.com/tpope/vim-vinegar.git'
+  - name: vim-speeddating
+    url: 'https://github.com/tpope/vim-speeddating.git'
+  - name: taglist
+    url: 'https://github.com/vim-scripts/taglist.vim.git'
+  - name: splitjoin
+    url: 'https://github.com/AndrewRadev/splitjoin.vim.git'
+  - name: bufexplorer
+    url: 'https://github.com/jlanzarotta/bufexplorer.git'
+  - name: vim-airline
+    url: 'https://github.com/vim-airline/vim-airline.git'
+  - name: vim-easymotion
+    url: 'https://github.com/easymotion/vim-easymotion.git'
+  - name: syntastic
+    url: 'https://github.com/vim-syntastic/syntastic.git'
+  - name: vim-solarized8
+    url: 'https://github.com/lifepillar/vim-solarized8.git'
+  - name: ctrlp
+    url: 'https://github.com/ctrlpvim/ctrlp.vim.git'
+  - name: vim-commentary
+    url: 'https://github.com/tpope/vim-commentary.git'
+plugins_extra:
+  - name: ansible-doc
+    url: 'https://github.com/takelley1/ansible-doc.vim.git'
+  - name: ansible-vim
+    url: 'https://github.com/pearofducks/ansible-vim.git'
+  - name: coc.nvim
+    url: 'https://github.com/neoclide/coc.nvim.git'

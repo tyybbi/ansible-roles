@@ -1,0 +1,55 @@
+---
+# tasks file for setup_vim
+- name: Install required packages
+  ansible.builtin.package:
+    name: "{{ install_packages }}"
+    state: present
+  become: yes
+  tags: install_packages
+
+- name: Ensure plugin directory existence
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    recurse: no
+    mode: '0750'
+  loop:
+    - "{{ vim_dir }}/pack"
+    - "{{ vim_dir }}/pack/plugins"
+    - "{{ vim_dir }}/pack/plugins/opt"
+    - "{{ vim_dir }}/pack/plugins/start"
+
+- name: Create ~/bin (for update-vim-plugins to reside)
+  file:
+    path: "{{ bin }}"
+    state: directory
+    mode: '0750'
+
+- name: Get .vimrc
+  ansible.builtin.get_url:
+    url: https://github.com/tyybbi/dotfiles/blob/master/cvimrc
+    dest: "{{ vimrc }}"
+    mode: '0640'
+
+- name: Get update-vim-plugins script
+  ansible.builtin.get_url:
+    url: https://github.com/tyybbi/scripts/blob/master/update-vim-plugins
+    dest: "{{ bin }}"
+    mode: '0750'
+
+- name: Clone the plugins
+  ansible.builtin.git:
+    repo: "{{ item.url }}"
+    dest: "{{ vim_dir }}/pack/plugins/start/{{ item.name }}"
+    update: yes
+    # noqa git-latest
+  loop: "{{ plugins }}"
+
+- name: Clone the extra plugins
+  ansible.builtin.git:
+    repo: "{{ item.url }}"
+    dest: "{{ vim_dir }}/pack/plugins/start/{{ item.name }}"
+    update: yes
+    # noqa git-latest
+  loop: "{{ plugins_extra }}"
+  tags: extra

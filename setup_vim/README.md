@@ -22,10 +22,10 @@ Example Playbook
 
 `ansible-playbook -i <ip-address or localhost>, -b -k -K`
 
-Sometimes we don't want the extra plugins (CoC and ansible stuff) installed,
-so we'll run the playbook with `--skip-tags "extra"`. Also, if we have vim and
-git already installed, we can skip the package installation task with
-`--skip-tags "install_packages"`
+Sometimes we don't want the extra plugins (CoC and ansible stuff, yarn et al
+needed) installed, so we'll run the playbook with `--skip-tags "extra"`. Also,
+if we have vim and git already installed, we can skip the package installation
+task with `--skip-tags "install_packages"`
 
 License
 -------

@@ -20,7 +20,7 @@
     - "{{ vim_dir }}/pack/plugins/start"
 
 - name: Create ~/bin (for update-vim-plugins to reside)
-  file:
+  ansible.builtin.file:
     path: "{{ bin }}"
     state: directory
     mode: '0750'
@@ -44,6 +44,14 @@
     update: yes
     # noqa git-latest
   loop: "{{ plugins }}"
+
+- name: Clone the plugins we don't need enabled all the time
+  ansible.builtin.git:
+    repo: "{{ item.url }}"
+    dest: "{{ vim_dir }}/pack/plugins/opt/{{ item.name }}"
+    update: yes
+    # noqa git-latest
+  loop: "{{ plugins_opt }}"
 
 - name: Clone the extra plugins
   ansible.builtin.git:

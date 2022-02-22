@@ -20,7 +20,8 @@ Example Playbook
       roles:
          - setup_vim
 
-`ansible-playbook -i <ip-address or localhost>, -b -k -K`
+- Locally: `ansible-playbook -i localhost, --connection=local -b`
+- Remotely: `ansible-playbook -i <IP address>, -b -k -K`
 
 Sometimes we don't want the extra plugins (CoC and ansible stuff, yarn et al
 needed) installed, so we'll run the playbook with `--skip-tags "extra"`. Also,

@@ -6,5 +6,6 @@ vimrc: "{{ ansible_env.HOME }}/.vimrc"
 install_packages:
   - fonts-powerline
   - git
+  - universal-ctags
   - vim
   - vim-nox

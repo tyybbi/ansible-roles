@@ -7,7 +7,7 @@ tasks afterwards.
 Role Variables
 --------------
 
-TBA
+Edit APT options as needed in defaults/main.yml.
 
 Requirements
 ------------

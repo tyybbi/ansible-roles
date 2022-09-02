@@ -24,7 +24,7 @@ Example Playbook
       roles:
          - update_pkgs
 
-- Locally: `ansible-playbook -i localhost, --connection=local`
+- Locally: `ansible-playbook -i localhost, --connection=local -K`
 - Remotely: `ansible-playbook -i <IP address>, -k -K`
 License
 -------

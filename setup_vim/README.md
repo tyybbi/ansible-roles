@@ -2,7 +2,8 @@ setup_vim
 =========
 
 My everyday Vim setup, so not really useful for anyone but me. Tested with
-Molecule on Debian 10/11, but should work on any modern Debian-based OS.
+Molecule on Debian 12, but should work on any modern Debian-based
+distribution.
 
 Role Variables
 --------------

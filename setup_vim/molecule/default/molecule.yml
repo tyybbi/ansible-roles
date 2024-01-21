@@ -4,11 +4,8 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: deb10-instance
-    image: qwe1/docker-debian:buster-slim-nonfree-molecule
-    pre_build_image: true
-  - name: deb11-instance
-    image: qwe1/docker-debian:bullseye-slim-nonfree-molecule
+  - name: deb12-instance
+    image: qwe1/docker-debian:bookworm-slim-nonfree-molecule
     pre_build_image: true
 provisioner:
   name: ansible

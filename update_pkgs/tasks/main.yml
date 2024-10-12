@@ -1,19 +1,18 @@
 ---
-  - name: Update package cache
-    ansible.builtin.apt:
-      update_cache: yes
-      cache_valid_time: "{{ update_cache_valid_time }}"
+- name: Update package cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: "{{ update_cache_valid_time }}"
 
-  - name: Upgrade packages
-    ansible.builtin.apt:
-      name: "*"
-      state: latest
+- name: Upgrade packages
+  ansible.builtin.apt:
+    upgrade: dist
 
-  - name: Remove useless packages from the cache
-    ansible.builtin.apt:
-      autoclean: yes
+- name: Purge dependencies that are no longer required
+  ansible.builtin.apt:
+    autoremove: "{{ update_autoremove }}"
+    purge: "{{ update_autoremove_purge }}"
 
-  - name: Purge dependencies that are no longer required
-    ansible.builtin.apt:
-      autoremove: "{{ update_autoremove }}"
-      purge: "{{ update_autoremove_purge }}"
+- name: Remove useless packages from the cache
+  ansible.builtin.apt:
+    autoclean: true

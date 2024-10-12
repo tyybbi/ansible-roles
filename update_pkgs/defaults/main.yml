@@ -2,6 +2,6 @@
 
 update_cache_valid_time: 1
 
-update_autoremove: yes
+update_autoremove: true
 
-update_autoremove_purge: yes
+update_autoremove_purge: true

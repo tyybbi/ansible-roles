@@ -32,8 +32,8 @@ plugins_opt:
     url: 'https://github.com/lilydjwg/colorizer'
   - name: nerdtree
     url: 'https://github.com/preservim/nerdtree.git'
-  #CoC needs Node.js so moved initially to opt in order to avoid error
-  #messages at vim launch
+  # CoC needs Node.js so moved initially to opt in order to avoid error
+  # messages at vim launch
   - name: coc.nvim
     url: 'https://github.com/neoclide/coc.nvim.git'
 plugins_extra:

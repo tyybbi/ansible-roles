@@ -4,14 +4,14 @@
   ansible.builtin.package:
     name: "{{ install_packages }}"
     state: present
-  become: yes
+  become: true
   tags: install_packages
 
 - name: Ensure plugin directory existence
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    recurse: no
+    recurse: true
     mode: '0750'
   loop:
     - "{{ vim_dir }}/pack"
@@ -41,23 +41,23 @@
   ansible.builtin.git:
     repo: "{{ item.url }}"
     dest: "{{ vim_dir }}/pack/plugins/start/{{ item.name }}"
-    update: yes
-    # noqa git-latest
+    update: true
+    # noqa: latest[git]
   loop: "{{ plugins }}"
 
 - name: Clone the plugins we don't need enabled all the time
   ansible.builtin.git:
     repo: "{{ item.url }}"
     dest: "{{ vim_dir }}/pack/plugins/opt/{{ item.name }}"
-    update: yes
-    # noqa git-latest
+    update: true
+    # noqa: latest[git]
   loop: "{{ plugins_opt }}"
 
 - name: Clone the extra plugins
   ansible.builtin.git:
     repo: "{{ item.url }}"
     dest: "{{ vim_dir }}/pack/plugins/start/{{ item.name }}"
-    update: yes
-    # noqa git-latest
+    update: true
+    # noqa: latest[git]
   loop: "{{ plugins_extra }}"
   tags: extra

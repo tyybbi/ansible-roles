@@ -3,6 +3,7 @@
   ansible.builtin.apt:
     name: neovim
     state: absent
+  become: true
 
 - name: Install prerequisites
   ansible.builtin.apt:

@@ -1,0 +1,7 @@
+---
+neovim_repo:
+  - name: neovim
+    url: 'https://github.com/neovim/neovim.git'
+kickstart_repo:
+  - name: nvim
+    url: 'https://github.com/tyybbi/kickstart.nvim.git'

@@ -1,0 +1,15 @@
+---
+git_dir: "{{ ansible_env.HOME }}/git"
+neovim_cache_dir: "{{ ansible_env.HOME }}/.local/share/nvim"
+kickstart_dir: "{{ ansible_env.HOME }}/.config/nvim"
+
+install_prereqs:
+  - cmake
+  - curl
+  - file
+  - gcc
+  - gettext
+  - git
+  - ninja-build
+  - unzip
+  - xz-utils

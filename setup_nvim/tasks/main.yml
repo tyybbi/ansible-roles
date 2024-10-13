@@ -1,0 +1,59 @@
+---
+- name: Uninstall neovim first
+  ansible.builtin.apt:
+    name: neovim
+    state: absent
+
+- name: Install prerequisites
+  ansible.builtin.apt:
+    name: "{{ install_prereqs }}"
+    state: present
+  become: true
+
+- name: Remove old directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "{{ git_dir }}/neovim"
+    - "{{ kickstart_dir }}"
+    - "{{ neovim_cache_dir }}"
+
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0750'
+  loop:
+    - "{{ git_dir }}"
+    - "{{ git_dir }}/neovim"
+    - "{{ kickstart_dir }}"
+
+- name: Clone Neovim repository
+  ansible.builtin.git:
+    repo: "{{ item.url }}"
+    dest: "{{ git_dir }}/{{ item.name }}"
+    update: true
+  loop: "{{ neovim_repo }}"
+
+- name: Clone Kickstart repository
+  ansible.builtin.git:
+    repo: "{{ item.url }}"
+    dest: "{{ kickstart_dir }}"
+    update: true
+  loop: "{{ kickstart_repo }}"
+
+- name: Run make
+  ansible.builtin.command: make CMAKE_BUILD=RelWithDebInfo
+  args:
+    chdir: "{{ git_dir }}/neovim"
+
+- name: Create deb package
+  ansible.builtin.command: cpack -G DEB
+  args:
+    chdir: "{{ git_dir }}/neovim/build"
+
+- name: Install deb package
+  ansible.builtin.apt:
+    deb: "{{ git_dir }}/neovim/build/nvim-linux64.deb"
+  become: true
